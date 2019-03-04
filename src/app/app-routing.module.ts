@@ -5,7 +5,6 @@ import { PublicLayoutComponent } from './views/_layout/public-layout.component';
 import { HomeComponent } from './views/home/home.component';
 import { AddUrlComponent } from './views/addUrl/add-url.component';
 import { BrokenUrlComponent } from './views/brokenUrl/broken-url.component';
-import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [  
   {
