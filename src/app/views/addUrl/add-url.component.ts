@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UrlService } from '../../services/url.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-url-page',
@@ -10,11 +11,12 @@ export class AddUrlComponent implements OnInit {
 
   addUrlForm: FormGroup;
   submitted = false;
+  errorMessage: string;
 
-  constructor(private _fb: FormBuilder, private urlService: UrlService) { }
+  constructor(private fb: FormBuilder, private urlService: UrlService, private router: Router) { }
 
   ngOnInit(): void {
-    this.addUrlForm = this._fb.group({
+    this.addUrlForm = this.fb.group({
       url: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
@@ -29,14 +31,20 @@ export class AddUrlComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.addUrlForm.invalid) {
+      this.errorMessage = 'Form is invalid!';
       return;
     }
+
     const form = this.addUrlForm.value;
-    this.urlService.addUrl({
+    if (this.urlService.addUrl({
       url: form.url,
       description: form.description,
       name: form.name
-    });
+    })) {
+      // this.router.navigateByUrl('/');
+      // return;
+    }
+    this.errorMessage = 'Something went wrong!';
   }
 
 }

@@ -1,24 +1,33 @@
 <h1>Add URL</h1>
 <form [formGroup]="addUrlForm" (ngSubmit)="onSubmit()">
     <fieldset class="form-group">
-        <label class="form-control-label" for="url">Url</label>        
-        <input id="url" type="text" formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.url.errors }"  placeholder="url" autocorrect="off" autocapitalize="off" spellcheck="off"/>
+        <label class="form-control-label" for="url">Url</label>
+        <input id="url" type="text" formControlName="url" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.url.errors }" placeholder="url" autocorrect="off"
+            autocapitalize="off" spellcheck="off" />
         <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
-                <div *ngIf="f.url.errors.required">Url is required</div>
-            </div>        
+            <div *ngIf="f.url.errors.required">Url is required</div>
+        </div>
     </fieldset>
     <fieldset class="form-group">
-        <label class="form-control-label" for="name">Name</label>        
-        <input id="name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"  placeholder="name" autocorrect="off" autocapitalize="off" spellcheck="off"/>
+        <label class="form-control-label" for="name">Name</label>
+        <input id="name" type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="name" autocorrect="off"
+            autocapitalize="off" spellcheck="off" />
         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                <div *ngIf="f.name.errors.required">Name is required</div>
-            </div>        
-    </fieldset>    
+            <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+    </fieldset>
     <fieldset class="form-group">
         <label>Description</label>
         <textarea id="description" class="form-control" placeholder="description" cols="5" rows="5" autocorrect="off"
             autocapitalize="off" spellcheck="off" formControlName="description"></textarea>
     </fieldset>
-    <button type="submit" class="btn btn-secondary" [disabled]="submitted && addUrlForm.invalid">Add</button>
 
+    <fieldset>
+        <p *ngIf="errorMessage">
+            <ngb-alert (close)="errorMessage = null">{{errorMessage}}</ngb-alert>
+        </p>
+    </fieldset>
+    <button type="submit" class="btn btn-secondary" [disabled]="submitted && addUrlForm.invalid">Add</button>
 </form>

@@ -35,7 +35,7 @@ export const addUrl = (url: IUrl): IUrl => {
         updateUrlStorage(list);
         return url;
     }
-    return url;
+    return null;
 };
 
 
