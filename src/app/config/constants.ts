@@ -1,3 +1,3 @@
-export class CONSTANTS {
-    public static readonly URLS = 'urls';
+export enum STORAGE_KEYS {
+    URLS = 'urls',
 }
