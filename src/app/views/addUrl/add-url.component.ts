@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UrlService } from '../../services/url.service';
+import { UrlService } from '../../services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -36,13 +36,15 @@ export class AddUrlComponent implements OnInit {
     }
 
     const form = this.addUrlForm.value;
-    if (this.urlService.addUrl({
+    const result = this.urlService.addUrl({
       url: form.url,
       description: form.description,
       name: form.name
-    })) {
-      // this.router.navigateByUrl('/');
-      // return;
+    });
+
+    if (result) {
+      this.router.navigateByUrl('/');
+      return;
     }
     this.errorMessage = 'Something went wrong!';
   }

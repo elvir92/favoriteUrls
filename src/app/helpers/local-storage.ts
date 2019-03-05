@@ -28,14 +28,41 @@ export const getUrls = (): IUrl[] => {
 };
 
 /** Add newly created url object to the storage. */
-export const addUrl = (url: IUrl): IUrl => {
+export const addUrl = (url: IUrl): IUrl[] => {
     if (!isEmpty(url)) {
         const list = getUrls();
         list.push(url);
         updateUrlStorage(list);
-        return url;
+        return list;
     }
-    return null;
+    return [];
 };
 
+
+export const removeUrl = (url: IUrl) => {
+    if (!isEmpty(url)) {
+        const list = getUrls();
+        const i = list.findIndex(x => x.id === url.id);
+        if (i !== -1) {
+            list.splice(i, 1);
+        }
+        updateUrlStorage(list);
+        return list;
+    }
+    return [];
+};
+
+export const updateUrl = (url: IUrl) => {
+    if (!isEmpty(url)) {
+        const list = getUrls();
+        const i = list.findIndex(x => x.id === url.id);
+        if (i !== -1) {
+            list[i] = url;
+        }
+
+        updateUrlStorage(list);
+        return list;
+    }
+    return [];
+};
 

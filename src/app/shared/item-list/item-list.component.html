@@ -1,0 +1,23 @@
+<div *ngIf="showBroken">
+    <button class="btn btn-secondary" [disabled]="loading" (click)="testItems()">Test - {{loading}}</button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Used on</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items; index as i">
+            <td>{{ item.name | uppercase}}</td>
+            <td>{{ item.updateDate | date:'medium' }}</td>
+            <td>
+                <button (click)="open(item)" class="btn btn-primary">Open URL</button>
+                <button (click)="remove(item)" class="btn btn-danger">Remove URL</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
