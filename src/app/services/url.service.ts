@@ -11,7 +11,7 @@ export class UrlService {
 
     addUrl(url: IUrl): IUrl[] {
         // Set default values
-        url.id = uuid(); // or get last id from list and increase it
+        url.id = uuid();
         url.insertDate = new Date();
         url.updateDate = new Date();
         return addUrl(url);
@@ -29,17 +29,4 @@ export class UrlService {
         url.updateDate = new Date();
         return updateUrl(url);
     }    
-
-    // checkIfExist(url: string) {
-    //     return this.http.get(url).subscribe(
-    //         data => {
-    //             console.log(data);
-    //             return true;
-    //         },
-    //         err => {
-    //             console.log(err);
-    //             return false;
-    //         }
-    //     );
-    // }
 }
